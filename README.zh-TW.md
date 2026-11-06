@@ -79,6 +79,24 @@ blender/  rhino/  sketchup/  power-automate/
   tests/                          單元測試（假 TCP 伺服器）
 ```
 
+## 技術來源與致謝
+
+| 用途 | 元件 | 授權 |
+|---|---|---|
+| MCP 伺服器框架 | [Model Context Protocol](https://modelcontextprotocol.io/) Python SDK (`mcp`) | MIT |
+| 截圖處理（選用） | [Pillow](https://python-pillow.org/) | HPND |
+| Windows UI 自動化（power-automate 橋接） | [uiautomation](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows) | Apache-2.0 |
+| 測試 | [pytest](https://pytest.org/) | MIT |
+| 被操控的軟體（未附帶） | Blender, Rhino / Grasshopper (McNeel), SketchUp (Trimble), Power Automate Desktop (Microsoft) | 見各家原廠 |
+
+開發過程使用 [Claude Code](https://claude.com/claude-code)（Anthropic）協助。
+
+## 作者
+
+- 網站：https://shaoenstudio.com
+- 聯絡信箱：shaoenstudio@gmail.com
+- GitHub：[@shaoen901109](https://github.com/shaoen901109)
+
 ## 授權
 
 [MIT](LICENSE)

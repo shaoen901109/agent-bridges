@@ -82,6 +82,24 @@ blender/  rhino/  sketchup/  power-automate/
   tests/                         unit tests (fake TCP server)
 ```
 
+## Credits
+
+| Purpose | Component | License |
+|---|---|---|
+| MCP server framework | [Model Context Protocol](https://modelcontextprotocol.io/) Python SDK (`mcp`) | MIT |
+| Screenshot handling (optional) | [Pillow](https://python-pillow.org/) | HPND |
+| Windows UI automation (power-automate bridge) | [uiautomation](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows) | Apache-2.0 |
+| Tests | [pytest](https://pytest.org/) | MIT |
+| Controlled applications (not included) | Blender, Rhino / Grasshopper (McNeel), SketchUp (Trimble), Power Automate Desktop (Microsoft) | see each vendor |
+
+Developed with the help of [Claude Code](https://claude.com/claude-code) (Anthropic).
+
+## Author
+
+- Website: https://shaoenstudio.com
+- Email: shaoenstudio@gmail.com
+- GitHub: [@shaoen901109](https://github.com/shaoen901109)
+
 ## License
 
 [MIT](LICENSE)
