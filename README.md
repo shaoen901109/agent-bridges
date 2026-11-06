@@ -2,6 +2,8 @@
 
 **English** ・ [繁體中文](README.zh-TW.md)
 
+> 📖 **Step-by-step tutorial (Traditional Chinese):** https://shao-en.com/blog/agent-bridges-guide.html — not sure how to set it up? Hand the article to Claude or ChatGPT and let it walk you through.
+
 Local MCP bridges that let an AI agent (Claude Code or any MCP client) operate desktop software
 running on your own Windows machine: take screenshots, inspect the document, run code inside the
 application, model geometry, and verify the result visually.

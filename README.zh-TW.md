@@ -2,6 +2,8 @@
 
 [English](README.md) ・ **繁體中文**
 
+> 📖 **圖文教學：** https://shao-en.com/blog/agent-bridges-guide.html ——如果你不知道該如何操作，請把這篇文章交給你的 Claude 或 ChatGPT。
+
 讓 AI agent（Claude Code 或任何支援 MCP 的客戶端）操控你自己電腦上桌面軟體的本機橋接工具：
 截圖、查詢文件、在軟體內執行程式、建模，並用截圖驗證結果。
 
