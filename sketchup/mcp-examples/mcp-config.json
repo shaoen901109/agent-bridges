@@ -1,0 +1,18 @@
+{
+  "_note": [
+    "Generic MCP client config example (Claude Desktop style 'mcpServers'). / 通用 MCP 客戶端設定範例。",
+    "Merge the 'sketchup' entry into your client's existing config; do not overwrite the whole file. / 請把 sketchup 這一項『合併』進既有設定，不要整份覆蓋。",
+    "Replace <USER> with your Windows user name. / 請把 <USER> 換成你的 Windows 使用者名稱。",
+    "The '_note' field is only a comment and may be deleted. / _note 只是註解，可刪除。"
+  ],
+  "mcpServers": {
+    "sketchup": {
+      "command": "C:\\Users\\<USER>\\SketchUpAgentBridge\\venv\\Scripts\\python.exe",
+      "args": ["-m", "sketchup_bridge.mcp_server"],
+      "env": {
+        "SKETCHUP_BRIDGE_PORT": "9876",
+        "SKETCHUP_BRIDGE_MAX_EDGE": "1280"
+      }
+    }
+  }
+}

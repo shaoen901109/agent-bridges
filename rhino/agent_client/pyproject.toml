@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rhino-bridge"
+version = "1.0.0"
+description = "Rhino 代理操控插件 — 共用 client / MCP server / CLI"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.2.0",
+    "pillow>=10.0.0",
+]
+
+[project.scripts]
+rhino-bridge = "rhino_bridge.cli:main"
+rhino-bridge-mcp = "rhino_bridge.mcp_server:main"
+
+[tool.setuptools.packages.find]
+include = ["rhino_bridge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

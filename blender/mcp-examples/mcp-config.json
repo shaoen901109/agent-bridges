@@ -1,0 +1,18 @@
+{
+  "_note": [
+    "Generic MCP client config example (Claude Desktop style 'mcpServers'). / 通用 MCP 客戶端設定範例。",
+    "Merge the 'blender' entry into your client's existing config; do not overwrite the whole file. / 請把 blender 這一項『合併』進既有設定，不要整份覆蓋。",
+    "Replace <USER> with your Windows user name (install.py creates the venv in %USERPROFILE%\\BlenderAgentBridge\\venv). / 請把 <USER> 換成你的 Windows 使用者名稱。",
+    "The '_note' field is only a comment and may be deleted. / _note 只是註解，可刪除。"
+  ],
+  "mcpServers": {
+    "blender": {
+      "command": "C:\\Users\\<USER>\\BlenderAgentBridge\\venv\\Scripts\\python.exe",
+      "args": ["-m", "blender_bridge.mcp_server"],
+      "env": {
+        "BLENDER_BRIDGE_PORT": "9877",
+        "BLENDER_BRIDGE_MAX_EDGE": "1280"
+      }
+    }
+  }
+}

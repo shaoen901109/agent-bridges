@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# 虛擬環境（正式安裝位置在 %USERPROFILE%\SketchUpAgentBridge\venv，不在 repo 內）
+.venv/
+venv/
+env/
+
+# 測試與截圖輸出
+*.png
+*.jpg
+輸出/
+out/
+tmp/

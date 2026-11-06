@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# venv 放在 %USERPROFILE%\PADAgentBridge\venv，不在 repo 內
+.venv/
+venv/

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blender-bridge"
+version = "2.0.0"
+description = "Blender Agent Bridge — 共用 client / MCP server / CLI（操控本機執行中的 Blender 3.4）"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.2.0",
+]
+
+[project.optional-dependencies]
+images = ["pillow>=10.0.0"]
+
+[project.scripts]
+blender-bridge = "blender_bridge.cli:main"
+blender-bridge-mcp = "blender_bridge.mcp_server:main"
+
+[tool.setuptools]
+packages = ["blender_bridge"]

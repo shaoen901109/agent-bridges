@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pad-bridge"
+version = "1.0.0"
+description = "Power Automate Desktop 代理操控 — 共用 client / MCP server / CLI"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.2.0",
+    "uiautomation>=2.0.18",
+]
+
+[project.scripts]
+pad-bridge = "pad_bridge.cli:main"
+pad-bridge-mcp = "pad_bridge.mcp_server:main"
+
+[tool.setuptools.packages.find]
+include = ["pad_bridge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

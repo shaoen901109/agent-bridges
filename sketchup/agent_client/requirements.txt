@@ -1,0 +1,4 @@
+# SketchUp 代理操控插件 — Python 相依套件
+# 安裝：<venv>\Scripts\python.exe -m pip install -r requirements.txt
+mcp>=1.2.0
+pillow>=10.0.0
