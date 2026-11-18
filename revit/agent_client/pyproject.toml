@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "revit-bridge"
+version = "1.0.0"
+description = "Revit 代理操控插件 — 共用 client / MCP server / CLI"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.10.0",
+    "pillow>=10.0.0",
+]
+
+[project.scripts]
+revit-bridge = "revit_bridge.cli:main"
+revit-bridge-mcp = "revit_bridge.mcp_server:main"
+
+[tool.setuptools.packages.find]
+include = ["revit_bridge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -11,6 +11,7 @@
 |---|---|---|---|---|
 | [`blender/`](blender/README.zh-TW.md) | Blender 3.4 | `127.0.0.1:9877` | `blender` | Blender 內的 startup 腳本；在主執行緒執行 `bpy` |
 | [`rhino/`](rhino/README.zh-TW.md) | Rhino 7 + Grasshopper | `127.0.0.1:9878` | `rhino` | C# `.rhp` 外掛 + IronPython 腳本；46 個工具（`rhino_*`、`gh_*`） |
+| [`revit/`](revit/README.zh-TW.md) | Revit 2024 | `127.0.0.1:9879` | `revit` | C# `IExternalApplication` 外掛；透過 Revit API 執行 C# 片段；18 個工具（`revit_*`），長度一律公釐 |
 | [`sketchup/`](sketchup/README.zh-TW.md) | SketchUp 2024 | `127.0.0.1:9876` | `sketchup` | Ruby 擴充功能；伺服器**預設關閉**，須從選單手動啟動 |
 | [`power-automate/`](power-automate/README.zh-TW.md) | Power Automate Desktop（PAD） | 無（UI Automation＋本機執行紀錄） | `pad` | 執行桌面流程、讀寫 Robin 腳本 |
 
@@ -43,8 +44,8 @@ Power Automate Desktop 沒有可用的腳本 socket，所以 `pad-bridge` 改用
 需求：Windows 10/11、Python 3.10+、對應的軟體（見上表）。
 
 ```powershell
-# Rhino / SketchUp / Power Automate（PowerShell）
-cd rhino            # 或 sketchup、power-automate
+# Rhino / Revit / SketchUp / Power Automate（PowerShell）
+cd rhino            # 或 revit、sketchup、power-automate
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 # PyPI 太慢？加上：-PipIndex https://你的鏡像網址/simple
 
@@ -62,9 +63,11 @@ python install.py
 
 - 伺服器**只綁 `127.0.0.1`**，不對區網或網際網路開放。沒有驗證機制，任何能在你電腦上執行程式的人都能連線，
   所以**不要**改成對外監聽，也不要做 port forwarding。
-- 能執行任意程式的工具（`*_eval_python`、`sketchup_eval_ruby`、`gh_eval_python`）等於把軟體
+- 能執行任意程式的工具（`*_eval_python`、`sketchup_eval_ruby`、`gh_eval_python`、`revit_eval_csharp`）等於把軟體
   （以及語言執行環境所能碰到的使用者帳號權限）交給 agent，請只對你信任的 agent 啟用。
 - SketchUp 的伺服器預設關閉，必須由你從選單啟動。
+- Revit 的伺服器遇到開頭不是 JSON 的連線（例如網頁對 `127.0.0.1` 發出的 HTTP 請求）會直接斷線，
+  瀏覽器無法把指令夾在請求內容裡送進來。
 - 覆蓋檔案、在有未存變更時開新檔／開檔，都需要明確的 `confirm`／`overwrite` 旗標。
   任何橋接器都沒有「關閉／強制結束軟體」的工具。
 - 軟體支援時，模型修改都包在 undo 記錄裡。
@@ -72,7 +75,7 @@ python install.py
 ## 專案結構
 
 ```
-blender/  rhino/  sketchup/  power-automate/
+blender/  rhino/  revit/  sketchup/  power-automate/
   README.md、README.zh-TW.md      各橋接器文件
   install.(ps1|py)、uninstall.ps1
   skill/                          Claude skill（SKILL.md＋references）
@@ -111,7 +114,7 @@ GitHub 上標示 **Verified** 的 commit，是作者本人簽章。
 | 截圖處理（選用） | [Pillow](https://python-pillow.org/) | HPND |
 | Windows UI 自動化（power-automate 橋接） | [uiautomation](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows) | Apache-2.0 |
 | 測試 | [pytest](https://pytest.org/) | MIT |
-| 被操控的軟體（未附帶） | Blender, Rhino / Grasshopper (McNeel), SketchUp (Trimble), Power Automate Desktop (Microsoft) | 見各家原廠 |
+| 被操控的軟體（未附帶） | Blender, Rhino / Grasshopper (McNeel), Revit (Autodesk), SketchUp (Trimble), Power Automate Desktop (Microsoft) | 見各家原廠 |
 
 開發過程使用 [Claude Code](https://claude.com/claude-code)（Anthropic）協助。
 

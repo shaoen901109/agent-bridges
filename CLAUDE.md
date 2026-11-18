@@ -1,7 +1,7 @@
 # Project Overview
-- 用途：agent-bridges — 讓 AI agent（MCP）操控本機 Blender／Rhino＋Grasshopper／SketchUp／Power Automate Desktop 的四個橋接工具。
-- Structure: `blender/`、`rhino/`、`sketchup/`、`power-automate/`；各含程式、`README.md`（英）＋`README.zh-TW.md`（繁中）、`skill/`、`mcp-examples/`、安裝腳本。
-- 通訊：各軟體內建 TCP 伺服器只綁 `127.0.0.1`（Blender 9877、Rhino 9878、SketchUp 9876）；Power Automate 走 UI Automation＋本機執行紀錄，無 TCP 埠。
+- 用途：agent-bridges — 讓 AI agent（MCP）操控本機 Blender／Rhino＋Grasshopper／Revit／SketchUp／Power Automate Desktop 的五個橋接工具。
+- Structure: `blender/`、`rhino/`、`revit/`、`sketchup/`、`power-automate/`；各含程式、`README.md`（英）＋`README.zh-TW.md`（繁中）、`skill/`、`mcp-examples/`、安裝腳本。
+- 通訊：各軟體內建 TCP 伺服器只綁 `127.0.0.1`（Blender 9877、Rhino 9878、Revit 9879、SketchUp 9876）；Power Automate 走 UI Automation＋本機執行紀錄，無 TCP 埠。
 
 # Commands (quiet)
 - Test（Rhino／SketchUp／PAD 有 `agent_client/tests`）：`python -m pytest -q --tb=line <資料夾>/agent_client/tests`

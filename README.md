@@ -13,6 +13,7 @@ application, model geometry, and verify the result visually.
 | [`blender/`](blender/README.md) | Blender 3.4 | `127.0.0.1:9877` | `blender` | startup script inside Blender; runs `bpy` on the main thread |
 | [`rhino/`](rhino/README.md) | Rhino 7 + Grasshopper | `127.0.0.1:9878` | `rhino` | C# `.rhp` plug-in + IronPython scripts; 46 tools (`rhino_*`, `gh_*`) |
 | [`sketchup/`](sketchup/README.md) | SketchUp 2024 | `127.0.0.1:9876` | `sketchup` | Ruby extension; server is **off by default**, you start it from the menu |
+| [`revit/`](revit/README.md) | Revit 2024 | `127.0.0.1:9879` | `revit` | C# `IExternalApplication` add-in; runs C# snippets via the Revit API; 18 tools (`revit_*`), lengths in mm |
 | [`power-automate/`](power-automate/README.md) | Power Automate Desktop (PAD) | none (UI Automation + local run logs) | `pad` | run desktop flows, read / write Robin scripts |
 
 ## Architecture
@@ -44,8 +45,8 @@ Each bridge ships three things: a **Python MCP server + CLI**, the **in-applicat
 Requirements: Windows 10/11, Python 3.10+, the target application (see table).
 
 ```powershell
-# Rhino / SketchUp / Power Automate (PowerShell)
-cd rhino            # or sketchup, power-automate
+# Rhino / Revit / SketchUp / Power Automate (PowerShell)
+cd rhino            # or revit, sketchup, power-automate
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 # slow PyPI? add:  -PipIndex https://your-mirror.example/simple
 
@@ -64,10 +65,12 @@ client afterwards. Details, tool lists and troubleshooting are in each bridge's 
 - Servers bind to **`127.0.0.1` only**; nothing is exposed to the LAN or internet. There is no
   authentication, so anyone who can run code on your machine can connect. **Do not** change the
   bind address or port-forward these ports.
-- Tools that run arbitrary code (`*_eval_python`, `sketchup_eval_ruby`, `gh_eval_python`) give the
+- Tools that run arbitrary code (`*_eval_python`, `sketchup_eval_ruby`, `gh_eval_python`, `revit_eval_csharp`) give the
   agent full control of the application (and, through the language runtime, of your user account).
   Enable the bridge only for agents you trust.
 - SketchUp's server is off by default and must be started by you from the menu.
+- The Revit server closes any connection whose first bytes are not JSON (e.g. an HTTP request a web
+  page sends to `127.0.0.1`), so a browser cannot smuggle a command in a request body.
 - Destructive file actions (overwrite, open/new with unsaved changes) require explicit
   `confirm` / `overwrite` flags. No bridge can close or kill the host application.
 - Model edits are wrapped in undo records where the host application supports it.
@@ -75,7 +78,7 @@ client afterwards. Details, tool lists and troubleshooting are in each bridge's 
 ## Repository layout
 
 ```
-blender/  rhino/  sketchup/  power-automate/
+blender/  rhino/  revit/  sketchup/  power-automate/
   README.md, README.zh-TW.md     per-bridge docs
   install.(ps1|py), uninstall.ps1
   skill/                         Claude skill (SKILL.md + references)
@@ -114,7 +117,7 @@ Commits marked **Verified** on GitHub are signed by the author.
 | Screenshot handling (optional) | [Pillow](https://python-pillow.org/) | HPND |
 | Windows UI automation (power-automate bridge) | [uiautomation](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows) | Apache-2.0 |
 | Tests | [pytest](https://pytest.org/) | MIT |
-| Controlled applications (not included) | Blender, Rhino / Grasshopper (McNeel), SketchUp (Trimble), Power Automate Desktop (Microsoft) | see each vendor |
+| Controlled applications (not included) | Blender, Rhino / Grasshopper (McNeel), Revit (Autodesk), SketchUp (Trimble), Power Automate Desktop (Microsoft) | see each vendor |
 
 Developed with the help of [Claude Code](https://claude.com/claude-code) (Anthropic).
 

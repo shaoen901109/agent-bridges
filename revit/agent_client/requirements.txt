@@ -1,0 +1,4 @@
+# Revit 代理操控插件 — Python 相依套件
+# 安裝：<venv>\Scripts\python.exe -m pip install -r requirements.txt （網路慢時可加 -i <鏡像網址>）
+mcp>=1.10.0
+pillow>=10.0.0
